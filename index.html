@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PSCS — Port Ship Cargo Solutions</title>
+  <meta name="description" content="PSCS designs digital solutions that simplify and automate workflows across ports, ships and cargo.">
+  <meta name="theme-color" content="#071b2c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- copy + palette first, so the page renders with the saved colours -->
+  <script src="js/content.js"></script>
+  <script src="js/settings.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- 1. Header -->
+  <header class="site-header" id="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" id="brand" href="#top" aria-label="PSCS — Port Ship Cargo Solutions, back to top"></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul id="nav-list"></ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 2. Hero -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero-copy">
+        <p class="eyebrow" id="hero-eyebrow"></p>
+        <h1 class="hero-title" id="hero-title"></h1>
+        <p class="hero-sub" id="hero-sub"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="cta-primary" href="#contact"></a>
+          <a class="btn btn-ghost" id="cta-secondary" href="#expertise"></a>
+        </div>
+      </div>
+
+      <div class="hero-stage" id="hero-stage" aria-hidden="true">
+        <svg class="hero-scene" id="hero-scene" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" focusable="false"></svg>
+        <canvas class="hero-water" id="hero-water"></canvas>
+      </div>
+    </section>
+
+    <!-- 3. Expertise: PORT / SHIP / CARGO -->
+    <section class="section expertise" id="expertise" aria-labelledby="exp-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" id="exp-eyebrow"></p>
+          <h2 class="section-title" id="exp-title"></h2>
+          <p class="section-intro" id="exp-intro"></p>
+        </div>
+        <div class="domain-list" id="domain-list"></div>
+        <p class="exp-note" id="exp-note"></p>
+      </div>
+    </section>
+
+    <!-- 4. Approach -->
+    <section class="section approach" id="approach" aria-labelledby="app-title">
+      <div class="wrap">
+        <div class="section-head section-head-row">
+          <div>
+            <p class="eyebrow" id="app-eyebrow"></p>
+            <h2 class="section-title" id="app-title"></h2>
+          </div>
+          <p class="section-intro" id="app-intro"></p>
+        </div>
+        <ol class="steps" id="steps"></ol>
+      </div>
+    </section>
+
+    <!-- 5. Team -->
+    <section class="section team" id="team" aria-labelledby="team-title">
+      <div class="wrap team-grid">
+        <div class="team-copy">
+          <p class="eyebrow" id="team-eyebrow"></p>
+          <h2 class="section-title" id="team-title"></h2>
+          <p class="section-intro" id="team-intro"></p>
+          <ul class="competences" id="competences"></ul>
+        </div>
+        <div class="team-figure" aria-hidden="true">
+          <svg viewBox="0 0 400 380" focusable="false">
+            <circle class="ring ring-1" cx="200" cy="140" r="104"/>
+            <circle class="ring ring-2" cx="138" cy="246" r="104"/>
+            <circle class="ring ring-3" cx="262" cy="246" r="104"/>
+            <circle class="core" cx="200" cy="211" r="9"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact-panel">
+          <p class="eyebrow" id="contact-eyebrow"></p>
+          <h2 class="contact-title" id="contact-title"></h2>
+          <p class="contact-text" id="contact-text"></p>
+          <div class="contact-action" id="contact-action"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. Footer -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="brand brand-footer" id="footer-brand"></div>
+      <ul class="footer-areas" id="footer-areas" aria-label="Areas"></ul>
+    </div>
+  </footer>
+
+  <!-- CUSTOMIZER (owner tool — remove this block for the client site) -->
+  <button class="cz-toggle" id="cz-toggle" type="button" aria-expanded="false" aria-controls="cz-panel">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+    <span>Customize</span>
+  </button>
+
+  <aside class="cz-panel" id="cz-panel" role="dialog" aria-modal="false" aria-labelledby="cz-heading" hidden>
+    <div class="cz-head">
+      <div>
+        <h2 id="cz-heading">Customize preview</h2>
+        <p class="cz-sub">Owner tool · not part of the client site</p>
+      </div>
+      <button class="cz-close" id="cz-close" type="button" aria-label="Close customize panel">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <form class="cz-form" id="cz-form" novalidate>
+      <fieldset>
+        <legend>Colours</legend>
+        <div class="cz-color"><label for="cz-bg">Background</label><code id="cz-bg-hex"></code><input type="color" id="cz-bg"></div>
+        <div class="cz-color"><label for="cz-surface">Surfaces</label><code id="cz-surface-hex"></code><input type="color" id="cz-surface"></div>
+        <div class="cz-color"><label for="cz-turquoise">Turquoise accent</label><code id="cz-turquoise-hex"></code><input type="color" id="cz-turquoise"></div>
+        <div class="cz-color"><label for="cz-yellow">Yellow accent</label><code id="cz-yellow-hex"></code><input type="color" id="cz-yellow"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Water</legend>
+        <label class="cz-check"><input type="checkbox" id="cz-water"> <span>Interactive water effect</span></label>
+        <div class="cz-range">
+          <label for="cz-intensity">Reaction intensity</label>
+          <output id="cz-intensity-out" for="cz-intensity"></output>
+          <input type="range" id="cz-intensity" min="0" max="100" step="1">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Hero text</legend>
+        <label class="cz-field" for="cz-headline">Headline</label>
+        <textarea id="cz-headline" rows="2" maxlength="220"></textarea>
+        <label class="cz-field" for="cz-sub">Subheadline</label>
+        <textarea id="cz-sub" rows="3" maxlength="220"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Settings</legend>
+        <div class="cz-buttons">
+          <button type="button" class="cz-btn" id="cz-export">Export JSON</button>
+          <button type="button" class="cz-btn" id="cz-import">Import JSON</button>
+          <button type="button" class="cz-btn cz-btn-quiet" id="cz-reset">Reset to original</button>
+        </div>
+        <input type="file" id="cz-file" accept="application/json,.json" hidden>
+        <label class="cz-check"><input type="checkbox" id="cz-hide"> <span>Hide the Customize button (clean view)</span></label>
+        <p class="cz-hint">Bring it back with <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> or by adding <code>#customize</code> to the address. Settings are saved in this browser automatically.</p>
+      </fieldset>
+      <p class="cz-status" id="cz-status" role="status" aria-live="polite"></p>
+    </form>
+  </aside>
+  <!-- /CUSTOMIZER -->
+
+  <script src="js/scene.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/water.js"></script>
+  <script src="js/customizer.js"></script>
+</body>
+</html>
