@@ -1,0 +1,9 @@
+{
+  "name": "pscs-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Visual prototype of the Port Ship Cargo Solutions (PSCS) website",
+  "scripts": {
+    "start": "node serve.js"
+  }
+}
