@@ -768,27 +768,34 @@ button { font: inherit; color: inherit; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(12px, 2vw, 20px);
   align-items: start;
-  padding-top: 28px; /* room for the capsule accent */
 }
 .team-shot-maritime,
 .team-shot-software { aspect-ratio: 4 / 5; }
 .team-shot-maritime img { object-position: 72% 50%; }
 .team-shot-software { margin-top: clamp(28px, 6vw, 64px); } /* staggered pair */
 .team-shot-software img { object-position: 50% 30%; }
-.team-shot-accent {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: clamp(48px, 7vw, 72px);
-  aspect-ratio: 9 / 16;
-  margin-left: calc(clamp(48px, 7vw, 72px) / -2);
-  border-radius: 36px;
-  box-shadow: 0 14px 30px -14px rgba(0, 6, 12, 0.7);
-  z-index: 1;
-}
 /* if either photograph is unavailable the other leads */
-.team-photos:has(.is-missing:not(.team-shot-accent)) { grid-template-columns: minmax(0, 1fr); max-width: 360px; }
-.team-photos:has(.is-missing:not(.team-shot-accent)) .team-shot-software { margin-top: 0; }
+.team-photos:has(.is-missing) { grid-template-columns: minmax(0, 1fr); max-width: 360px; }
+.team-photos:has(.is-missing) .team-shot-software { margin-top: 0; }
+
+/* e-mail address under the photographs */
+.team-mail {
+  margin-top: clamp(20px, 3vw, 28px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  min-height: 56px;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(170deg, var(--surface), var(--bg-raise));
+  text-decoration: none;
+  transition: border-color 0.25s ease;
+}
+.team-mail:hover { border-color: var(--teal); }
+.team-mail-label { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.team-mail-address { font-family: var(--font-display); font-weight: 500; color: var(--text); overflow-wrap: anywhere; }
 
 @media (max-width: 960px) {
   .team-grid { grid-template-columns: 1fr; }
@@ -796,10 +803,9 @@ button { font: inherit; color: inherit; }
   .team-figure { max-width: 600px; }
 }
 @media (max-width: 480px) {
-  .team-photos { grid-template-columns: minmax(0, 1fr); padding-top: 36px; gap: 14px; }
+  .team-photos { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .team-shot-maritime { aspect-ratio: 16 / 10; }
   .team-shot-software { aspect-ratio: 4 / 3; margin-top: 0; }
-  .team-shot-accent { left: auto; right: 12px; top: 0; margin-left: 0; }
 }
 
 /* ==========================================================================

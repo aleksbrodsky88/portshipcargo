@@ -223,9 +223,6 @@ window.PSCS_CONTENT = {
         caption: "Software engineering",
         image: IMG("dev", [480, 800, 1122], 1122, 1402, "(min-width: 821px) 280px, 46vw",
           "A software engineer seen from behind, working at several monitors of code. Illustrative photograph.")
-      },
-      accent: {
-        image: IMG("capsule", [300, 600], 600, 1066, "120px", "")
       }
     }
   },

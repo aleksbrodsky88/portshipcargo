@@ -267,9 +267,15 @@
   if (tf && ph) {
     tf.appendChild(h("div", { class: "team-photos" }, [
       ph.maritime ? figure(ph.maritime.image, "team-shot team-shot-maritime", { caption: ph.maritime.caption }) : null,
-      ph.software ? figure(ph.software.image, "team-shot team-shot-software", { caption: ph.software.caption }) : null,
-      ph.accent ? figure(ph.accent.image, "team-shot team-shot-accent", { decorative: true }) : null
+      ph.software ? figure(ph.software.image, "team-shot team-shot-software", { caption: ph.software.caption }) : null
     ]));
+    // our e-mail address, shown only once it is set in content.js (contactDetails.email)
+    if (C.contactDetails.email) {
+      tf.appendChild(h("a", { class: "team-mail", href: "mailto:" + C.contactDetails.email }, [
+        h("span", { class: "team-mail-label", text: C.contact.emailLabel }),
+        h("span", { class: "team-mail-address", text: C.contactDetails.email })
+      ]));
+    }
   }
   var comp = $("competences");
   T.competences.forEach(function (c, i) {
