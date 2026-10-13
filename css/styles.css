@@ -834,6 +834,44 @@ button { font: inherit; color: inherit; }
 }
 .contact-text { margin-top: 22px; max-width: 36rem; font-size: 1.08rem; color: var(--muted); }
 .contact-action { margin-top: 36px; }
+.mail-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+}
+.mail-address {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  background: var(--bg-deep);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1rem, 2.6vw, 1.3rem);
+  letter-spacing: 0.01em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+  cursor: copy;
+  user-select: all;
+  -webkit-user-select: all;
+}
+.contact-action { position: relative; }
+@media (max-width: 480px) {
+  .mail-address { padding: 10px 14px; font-size: clamp(0.9rem, 4.1vw, 1.05rem); letter-spacing: 0; }
+}
+.mail-copy { gap: 10px; border: 0; cursor: pointer; font: inherit; font-weight: 600; font-size: 0.98rem; }
+.mail-copy-icon svg { width: 18px; height: 18px; }
+.mail-copy.is-copied { background: var(--yellow); color: var(--on-accent); }
+.mail-status { min-height: 1.4em; margin-top: 14px; font-size: 0.9rem; color: var(--muted); }
+.mail-status:not(.is-error) {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.mail-status.is-error { color: var(--yellow); }
 .pending {
   display: inline-flex;
   align-items: center;

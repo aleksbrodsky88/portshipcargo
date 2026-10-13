@@ -294,13 +294,87 @@
   $("contact-text").textContent = K.text;
   var action = $("contact-action");
   if (C.contactDetails.email) {
-    action.appendChild(
-      h("a", { class: "btn btn-primary", href: "mailto:" + C.contactDetails.email, text: K.emailLabel + " — " + C.contactDetails.email })
-    );
+    renderEmailCopy(action, C.contactDetails.email, K);
   } else {
     action.appendChild(
       h("p", { class: "pending" }, [h("span", { class: "pending-dot", "aria-hidden": "true" }), h("span", { text: K.pending })])
     );
+  }
+
+  /* Visible, selectable address + "Copy email" button. Success is only reported
+     after the copy really happened; otherwise the address is selected for the
+     visitor to copy by hand. */
+  function renderEmailCopy(target, email, T) {
+    var addr = h("span", { class: "mail-address", id: "contact-email", text: email });
+    var label = h("span", { class: "mail-copy-label", text: T.copyLabel });
+    var icon = h("span", { class: "mail-copy-icon", "aria-hidden": "true" });
+    icon.innerHTML =
+      '<svg viewBox="0 0 24 24" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6.2C5 5.5 5.5 5 6.2 5H15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'; // static, trusted
+    var btn = h("button", { class: "btn btn-primary mail-copy", type: "button", "aria-describedby": "contact-email" }, [icon, label]);
+    var status = h("p", { class: "mail-status", role: "status", "aria-live": "polite" });
+    target.appendChild(h("div", { class: "mail-box" }, [addr, btn]));
+    target.appendChild(status);
+
+    var timer = 0;
+    function selectAddress() {
+      try {
+        var range = document.createRange();
+        range.selectNodeContents(addr);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      } catch (e) {}
+    }
+    function legacyCopy() {
+      // older browsers / contexts without the async clipboard API
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = email;
+        ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none";
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand("copy");
+        ta.remove();
+        return ok === true;
+      } catch (e) {
+        return false;
+      }
+    }
+    function copy() {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        return navigator.clipboard.writeText(email).then(
+          function () { return true; },
+          function () { return legacyCopy(); }
+        );
+      }
+      return Promise.resolve(legacyCopy());
+    }
+    function showSuccess() {
+      clearTimeout(timer);
+      status.classList.remove("is-error");
+      status.textContent = T.copiedStatus; // announced by the live region, visually hidden
+      label.textContent = T.copiedLabel;
+      btn.classList.add("is-copied");
+      timer = setTimeout(function () {
+        label.textContent = T.copyLabel;
+        btn.classList.remove("is-copied");
+        status.textContent = "";
+      }, 2000);
+    }
+    function showFailure() {
+      clearTimeout(timer);
+      label.textContent = T.copyLabel;
+      btn.classList.remove("is-copied");
+      status.classList.add("is-error");
+      status.textContent = T.copyFailed;
+      selectAddress();
+    }
+    function onCopy() {
+      copy().then(function (ok) { ok ? showSuccess() : showFailure(); });
+    }
+    btn.addEventListener("click", onCopy);
+    addr.addEventListener("click", onCopy);
   }
 
   /* ---------- footer ---------- */

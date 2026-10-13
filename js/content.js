@@ -37,7 +37,7 @@ window.PSCS_CONTENT = {
   },
 
   contactDetails: {
-    email: null
+    email: "customer@portshipcargo.com"
   },
 
   nav: [
@@ -233,7 +233,11 @@ window.PSCS_CONTENT = {
     text:
       "Tell us about a workflow that takes too much time, relies on manual steps or lives in too many places. We would be glad to discuss it.",
     pending: "Contact details will be added soon.",
-    emailLabel: "Write to us"
+    emailLabel: "Write to us",
+    copyLabel: "Copy email",
+    copiedLabel: "Copied \u2713",
+    copiedStatus: "Email address copied to the clipboard.",
+    copyFailed: "Please select and copy the email address."
   },
 
   footer: {
