@@ -51,87 +51,144 @@ window.PSCS_CONTENT = {
     eyebrow: "Port · Ship · Cargo",
     // headline and subheadline defaults; the Customize panel can override them
     headline: "Bring order to maritime operations.",
+    supportingLine: "Maritime consultancy. Operational solutions. Tailored technology.",
     subheadline:
-      "We design and improve digital systems that connect people, information and workflows across ports, vessels and cargo.",
+      "We combine practical maritime experience with software engineering to advise on operations, improve workflows and build tailored systems across ports, vessels and cargo.",
     // earlier default copy: saved settings that still hold it are upgraded, owner edits are kept
     legacyHeadlines: ["Smarter processes. Connected maritime operations."],
     legacySubheadlines: [
-      "We design digital solutions that simplify and automate workflows across ports, ships and cargo."
+      "We design digital solutions that simplify and automate workflows across ports, ships and cargo.",
+      "We design and improve digital systems that connect people, information and workflows across ports, vessels and cargo."
     ],
     // photographic hero; set image to null to fall back to the illustrated scene
     image: IMG("hero", [800, 1200, 1590], 1590, 989, "(min-width: 1200px) 1200px, 100vw",
       "A container ship moored at night beneath three quay cranes, its lights reflected in calm water."),
-    primaryCta: { label: "Discuss your process", href: "#contact" },
+    primaryCta: { label: "Discuss your needs", href: "#contact" },
     secondaryCta: { label: "Explore our expertise", href: "#expertise" }
   },
 
   expertise: {
     eyebrow: "Expertise",
-    title: "Three connected areas. One focus: the work behind them.",
+    title: "Expertise across ports, vessels and cargo.",
     intro:
-      "Every operation is a chain of people, information and decisions. We look at where that chain slows down and design solutions around it.",
-    note: "Example processes we can design solutions for — not a list of finished products.",
-    toggleOpen: "Show example processes",
-    toggleClose: "Hide example processes",
+      "We help maritime businesses understand their operational challenges, improve the way work is organized and develop systems around their specific needs.",
+    note: "Areas we can advise on and develop tailored systems for \u2014 not a catalogue of finished products.",
+    toggleOpen: "Show services",
+    toggleClose: "Hide services",
+    advisoryTitle: "Advisory & Operational Support",
+    systemsTitle: "Systems & Automation",
     domains: [
       {
         key: "port",
+        name: "PORT",
+        full: "Port Operations & Information",
+        description:
+          "Practical advice and tailored systems for vessel calls, port coordination and information exchange.",
         image: IMG("port", [480, 800, 1000], 1000, 750, "(min-width: 961px) 300px, 92vw",
           "Aerial view of a container ship alongside a quay with yellow cranes, assisted by a tugboat."),
-        name: "PORT",
-        full: "Port Operations & Infrastructure",
-        description:
-          "Coordination that keeps a port moving — berths, vessel movements and marine services.",
-        processes: [
-          "Berth planning and allocation",
-          "Vessel movement coordination",
-          "Pilotage, towage and mooring workflows",
-          "Marine resource scheduling",
-          "Operational reporting"
-        ]
+        advisory: [
+          "Review of port and vessel-call workflows.",
+          "Berth, vessel movement and marine-service coordination processes.",
+          "Operational procedures, handovers and reporting workflows.",
+          "Information exchange between ports, agents, terminals and marine services."
+        ],
+        systems: {
+          items: [
+            "Port planning and operational monitoring systems, covering operational planning and coordination.",
+            "Port information systems.",
+            "Berth planning and resource scheduling tools.",
+            "Shared operational updates and role-based notifications.",
+            "Reporting, dashboards and integrations."
+          ]
+        }
       },
       {
         key: "ship",
+        name: "SHIP",
+        full: "Vessel Operations, Management & Maintenance",
+        description:
+          "Maritime advice and company-specific systems for dry cargo vessels, general cargo ships, container ships and tankers.",
         image: IMG("ship", [480, 800, 840], 840, 630, "(min-width: 961px) 300px, 92vw",
           "A container vessel at night with its accommodation block and loaded containers."),
-        name: "SHIP",
-        full: "Vessel Operations & Management",
-        description:
-          "Operational and administrative work around vessels, on board and ashore.",
-        processes: [
-          "Voyage and vessel operations",
-          "Maritime documentation",
-          "Maintenance and inspection workflows",
-          "Ship-to-shore information exchange",
-          "Fleet coordination"
-        ]
+        advisory: [
+          "Vessel operational workflow review.",
+          "Advice on company and shipboard processes.",
+          "Cargo-operation workflow advice.",
+          "Voyage and passage planning advisory.",
+          "Review of documentation, handovers and ship-to-shore coordination.",
+          "Maintenance and inspection workflow advice."
+        ],
+        systems: {
+          groups: [
+            {
+              title: "Ship Management Systems",
+              text: "Tailored tools for vessel procedures, operational workflows, documentation, responsibilities and ship-to-shore coordination."
+            },
+            {
+              title: "Planned Maintenance Systems (PMS)",
+              text: "Tailored maintenance and inspection systems for vessel equipment and areas, with clear schedules, checklists, responsibilities and records.",
+              listTitle: "Illustrative capabilities",
+              items: [
+                "Organize equipment and areas by vessel.",
+                "Cover deck, machinery spaces, ballast tanks and other relevant areas.",
+                "Configure schedules by calendar intervals, equipment running hours or defined events.",
+                "Assign tasks and responsible roles.",
+                "Track completed, upcoming and overdue work.",
+                "Store inspection findings, photographs and work history.",
+                "Manage follow-up actions and reporting for shore teams."
+              ],
+              note: "Schedules accommodate company procedures and the applicable equipment and operational requirements."
+            },
+            {
+              title: "Integrated Vessel Systems",
+              text: "Connect operations, maintenance, documentation and reporting within one system, or improve the tools your company already uses."
+            }
+          ]
+        }
       },
       {
         key: "cargo",
+        name: "CARGO",
+        full: "Cargo Operations & Coordination",
+        description:
+          "Practical maritime insight and tailored tools for cargo workflows, documentation and operational coordination.",
         image: IMG("cargo", [480, 720], 720, 540, "(min-width: 961px) 300px, 92vw",
           "Colourful stacked shipping containers beside yellow quay cranes."),
-        name: "CARGO",
-        full: "Cargo Operations & Logistics",
-        description:
-          "Planning, handling and tracking cargo — and the information that travels with it.",
-        processes: [
-          "Cargo planning and handling",
-          "Loading and unloading coordination",
-          "Cargo documentation",
-          "Cargo tracking and visibility",
-          "Logistics information exchange"
-        ]
+        advisory: [
+          "Cargo-operation workflow review.",
+          "Loading and unloading coordination processes.",
+          "Vessel, terminal and agent information exchange.",
+          "Cargo documentation workflows.",
+          "Operational handovers and reporting."
+        ],
+        systems: {
+          items: [
+            "Cargo planning and coordination tools.",
+            "Cargo status tracking and shared visibility.",
+            "Documentation and approval workflows.",
+            "Operational notifications and reporting.",
+            "Integration between vessel, terminal and shore teams."
+          ]
+        }
       }
-    ]
+    ],
+    digital: {
+      title: "Digital solutions across all three areas.",
+      text: "We also develop websites, operational portals, automated workflows and integrations that support maritime businesses and connect their existing tools."
+    },
+    clients: {
+      title: "Who we work with.",
+      text: "Shipowners and vessel operators, charterers, ports and terminals, ship agents, crewing companies and maritime service providers."
+    }
   },
 
   approach: {
     eyebrow: "Approach",
-    title: "From fragmented work to connected operations.",
+    title: "Advice, improvement and systems built around your operation.",
     intro:
-      "We start with how work happens today. Then we build a new system or improve the one you already use, making information easier to find, responsibilities clearer and communication more relevant.",
+      "We start with the operational need. The right response may be practical advice, a new system or an improvement to the tools and processes already in place.",
     problemsLabel: "The challenge",
-    optionsLabel: "Two ways to deliver",
+    optionsLabel: "Three ways to work with us",
     stepsLabel: "How we work",
     problems: [
       {
@@ -155,38 +212,50 @@ window.PSCS_CONTENT = {
     ],
     options: [
       {
+        key: "consult",
+        tag: "CONSULT",
+        subtitle: "Maritime Advisory",
+        title: "Understand the challenge.",
+        text:
+          "We review the situation, clarify the workflow and provide practical recommendations tailored to your vessels, operations and company needs.",
+        cta: { label: "Discuss advisory support", href: "#contact" },
+        image: null
+      },
+      {
         key: "reset",
         tag: "RESET",
-        title: "Build from the ground up.",
+        subtitle: "Build from the Ground Up",
+        title: "Create a tailored solution.",
         text:
-          "When a fresh start is the right choice, we design and develop a system around your workflows, roles and operational needs.",
+          "When a new approach is needed, we design and develop a system around your workflows, responsibilities and operational requirements.",
         cta: { label: "Discuss a new system", href: "#contact" },
-        image: IMG("reset", [480, 768, 1200], 1200, 800, "(min-width: 821px) 540px, 92vw",
+        image: IMG("reset", [480, 768, 1200], 1200, 800, "(min-width: 1000px) 360px, (min-width: 600px) 40vw, 92vw",
           "A turquoise RESET key on a dark keyboard.")
       },
       {
         key: "upgrade",
         tag: "UPGRADE",
-        title: "Improve what already works.",
+        subtitle: "Improve What Already Works",
+        title: "Develop your existing capability.",
         text:
-          "We improve existing tools, connect information and automate repetitive steps while retaining the parts that serve your operation well.",
+          "We improve current processes and tools, connect information and automate repetitive work while preserving what already serves your operation well.",
         cta: { label: "Discuss improving your tools", href: "#contact" },
-        image: IMG("upgrade", [480, 768, 1200, 1536], 1536, 1024, "(min-width: 821px) 540px, 92vw",
+        image: IMG("upgrade", [480, 768, 1200, 1536], 1536, 1024, "(min-width: 1000px) 360px, (min-width: 600px) 40vw, 92vw",
           "An amber-yellow UPGRADE key on a dark keyboard.")
       }
     ],
     steps: [
       {
         title: "Understand",
-        text: "We map the workflow with the people who use it, identifying delays, duplicate work and information gaps."
+        text: "We examine the operation with the people involved and define the problem, requirements and intended outcome."
       },
       {
-        title: "Build",
-        text: "We develop a new solution or improve existing tools, validating the design against real operational needs."
+        title: "Develop",
+        text: "We prepare practical recommendations, develop a new system or improve existing tools according to the agreed scope."
       },
       {
         title: "Implement",
-        text: "We introduce the solution into daily work, support adoption and refine it through feedback."
+        text: "We support the introduction of the agreed solution and refine it through operational feedback."
       }
     ],
     note:
@@ -197,19 +266,19 @@ window.PSCS_CONTENT = {
     eyebrow: "TEAM",
     title: "Maritime experience. Engineering expertise.",
     intro:
-      "Our team brings together practical experience in ship command, port and vessel traffic operations, and marine surveying with software engineering and technical leadership. We understand how maritime work happens on board and ashore, and translate that understanding into clear, dependable digital systems.",
+      "Our team combines experienced maritime captains with software engineering expertise. With higher education in maritime and IT disciplines, practical experience at sea and in port operations, and 15 years of software development experience, we connect operational understanding with the ability to build tailored systems.",
     competences: [
       {
-        title: "Maritime and port operations",
-        text: "Practical insight into vessel operations, traffic coordination, marine services and the information teams need to work together."
+        title: "Maritime & Port Operations",
+        text: "Experience across dry cargo vessels, general cargo ships, container ships and tankers, complemented by knowledge of vessel traffic operations, port coordination and marine surveying."
       },
       {
-        title: "Process and solution design",
-        text: "Turning complex workflows into clear roles, shared information and practical tools that reduce unnecessary administration."
+        title: "Consultancy & Process Design",
+        text: "Understanding how work happens on board and ashore, identifying friction and shaping practical recommendations around the operation."
       },
       {
-        title: "Software engineering",
-        text: "Designing, building and integrating dependable systems around real operational requirements."
+        title: "Software Engineering & Integration",
+        text: "Fifteen years of software development experience across varied projects, supported by higher education in IT and technical leadership experience."
       }
     ],
     // illustrative photographs of the competencies — not portraits of actual staff
@@ -229,9 +298,9 @@ window.PSCS_CONTENT = {
 
   contact: {
     eyebrow: "Contact",
-    title: "What would you like to simplify?",
+    title: "What would you like to improve?",
     text:
-      "Tell us about a workflow that takes too much time, relies on manual steps or lives in too many places. We would be glad to discuss it.",
+      "Tell us about your maritime operation, a process you want to improve or a system you need to develop. We can discuss practical advice, a new solution or improvements to your existing setup.",
     pending: "Contact details will be added soon.",
     emailLabel: "Write to us",
     copyLabel: "Copy email",

@@ -117,6 +117,7 @@
 
   /* ---------- hero ---------- */
   $("hero-eyebrow").textContent = C.hero.eyebrow;
+  $("hero-line").textContent = C.hero.supportingLine;
   var primary = $("cta-primary"), secondary = $("cta-secondary");
   primary.textContent = C.hero.primaryCta.label;
   primary.setAttribute("href", C.hero.primaryCta.href);
@@ -167,6 +168,10 @@
   $("exp-title").textContent = E.title;
   $("exp-intro").textContent = E.intro;
   $("exp-note").textContent = E.note;
+  [["exp-digital", E.digital], ["exp-clients", E.clients]].forEach(function (x) {
+    $(x[0]).appendChild(h("h3", { class: "exp-block-title", text: x[1].title }));
+    $(x[0]).appendChild(h("p", { class: "exp-block-text", text: x[1].text }));
+  });
 
   var list = $("domain-list");
   E.domains.forEach(function (d, idx) {
@@ -187,11 +192,31 @@
     icon.innerHTML = ICONS[d.key] || ""; // static, trusted SVG only
     btn.insertBefore(icon, btn.children[1]);
 
-    var ul = h("ol", { class: "process-list" });
-    d.processes.forEach(function (p) {
-      ul.appendChild(h("li", null, [h("span", { text: p })]));
-    });
-    var body = h("div", { class: "domain-panel-body" }, [d.image ? figure(d.image, "domain-media") : null, ul]);
+    function bullets(items) {
+      var ul = h("ul", { class: "service-list" });
+      items.forEach(function (t) { ul.appendChild(h("li", null, [h("span", { text: t })])); });
+      return ul;
+    }
+    var systems = h("section", { class: "service-group service-systems" }, [h("h4", { class: "service-heading", text: E.systemsTitle })]);
+    if (d.systems.groups) {
+      d.systems.groups.forEach(function (g) {
+        systems.appendChild(h("div", { class: "system-card" }, [
+          h("h5", { class: "system-title", text: g.title }),
+          h("p", { class: "system-text", text: g.text }),
+          g.items ? h("p", { class: "system-list-title", text: g.listTitle }) : null,
+          g.items ? bullets(g.items) : null,
+          g.note ? h("p", { class: "system-note", text: g.note }) : null
+        ]));
+      });
+    } else {
+      systems.appendChild(bullets(d.systems.items));
+    }
+    var advisory = h("section", { class: "service-group service-advisory" }, [
+      h("h4", { class: "service-heading", text: E.advisoryTitle }),
+      bullets(d.advisory)
+    ]);
+    var columns = h("div", { class: "service-columns" + (d.systems.groups ? " has-groups" : "") }, [advisory, systems]);
+    var body = h("div", { class: "domain-panel-body" }, [d.image ? figure(d.image, "domain-media") : null, columns]);
     var panel = h("div", { class: "domain-panel", id: panelId, role: "region", "aria-labelledby": btnId }, [
       h("div", { class: "domain-panel-inner" }, [body])
     ]);
@@ -233,12 +258,18 @@
 
   var options = $("options");
   A.options.forEach(function (o) {
-    var frame = o.image ? figure(o.image, "option-media") : null;
-    if (frame) frame.setAttribute("data-label", o.tag);
+    var frame;
+    if (o.image) {
+      frame = figure(o.image, "option-media");
+    } else {
+      // no photograph for this path: a matching typographic frame
+      frame = h("div", { class: "media option-media is-typographic", "aria-hidden": "true" });
+    }
+    frame.setAttribute("data-label", o.tag);
     var card = h("article", { class: "option option-" + o.key }, [
       frame,
       h("div", { class: "option-copy" }, [
-        h("p", { class: "tag", text: o.tag }),
+        h("p", { class: "tag", text: o.tag + " \u2014 " + o.subtitle }),
         h("h4", { class: "card-title", text: o.title }),
         h("p", { class: "card-text", text: o.text }),
         o.cta ? h("a", { class: "text-link", href: o.cta.href, text: o.cta.label }) : null
