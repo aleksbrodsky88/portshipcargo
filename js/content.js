@@ -216,7 +216,7 @@ window.PSCS_CONTENT = {
     photos: {
       maritime: {
         caption: "Maritime and port operations",
-        image: IMG("team-port", [600, 1000, 1400], 1400, 740, "(min-width: 821px) 520px, 92vw",
+        image: IMG("team-port", [600, 1000, 1400], 1400, 739, "(min-width: 821px) 520px, 92vw",
           "A port operations specialist in a high-visibility jacket and hard hat, holding a radio and a clipboard at night beside quay cranes. Illustrative photograph.")
       },
       software: {

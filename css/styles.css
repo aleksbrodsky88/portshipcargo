@@ -771,7 +771,7 @@ button { font: inherit; color: inherit; }
   align-items: stretch;
 }
 .team-shot-maritime { grid-area: maritime; aspect-ratio: 4 / 5; }
-.team-shot-maritime img { object-position: 78% 50%; }
+.team-shot-maritime img { object-position: 72% 50%; }
 .team-shot-software { grid-area: software; aspect-ratio: 4 / 5; align-self: end; }
 .team-shot-software img { object-position: 50% 30%; }
 /* when the port photograph is not available the engineer leads */
