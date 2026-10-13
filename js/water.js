@@ -118,7 +118,7 @@
 
   /* ---------- pointer ripples ---------- */
   function addRipple(e) {
-    if (!settings.enabled || settings.intensity === 0 || reducedMotion.matches) return;
+    if (!started || !settings.enabled || settings.intensity === 0 || reducedMotion.matches) return;
     var r = canvas.getBoundingClientRect();
     var x = e.clientX - r.left, y = e.clientY - r.top;
     if (y < -40 || y > r.height + 40) return;
@@ -139,21 +139,37 @@
       if (visible) schedule();
     }).observe(canvas);
   }
-  window.addEventListener("resize", resize);
+  window.addEventListener("resize", function () { if (started) resize(); });
   if (reducedMotion.addEventListener) reducedMotion.addEventListener("change", function () { schedule(); });
 
+  /* The effect belongs to the illustrated scene. While the hero shows a
+     photograph (stage.is-photo) it stays off; saved water settings are kept. */
+  var stage = document.getElementById("hero-stage");
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    resize();
+    rebuild();
+  }
+
   window.PSCS_WATER = {
+    get available() { return !stage || !stage.classList.contains("is-photo"); },
     update: function (w) {
       if (!w) return;
       settings.enabled = !!w.enabled;
       settings.intensity = Math.max(0, Math.min(100, Number(w.intensity) || 0));
       schedule();
     },
-    rebuild: rebuild
+    rebuild: function () { if (started) rebuild(); },
+    start: start
   };
 
   var s = window.PSCS_STATE && window.PSCS_STATE.water;
   if (s) window.PSCS_WATER.update(s);
-  resize();
-  rebuild();
+  if (window.PSCS_WATER.available) start();
+  // photo failed to load -> the illustration returns and the water with it
+  document.addEventListener("pscs:hero-mode", function () {
+    if (window.PSCS_WATER.available) start();
+  });
 })();

@@ -25,6 +25,38 @@
     return document.getElementById(id);
   }
 
+  /* Responsive <img> from a content.js image descriptor. If the file is
+     missing the figure is marked is-missing instead of showing a broken image. */
+  function pic(d, opts) {
+    opts = opts || {};
+    var attrs = {
+      src: d.src,
+      srcset: d.srcset,
+      sizes: opts.sizes || d.sizes,
+      width: String(d.width),
+      height: String(d.height),
+      alt: opts.decorative ? "" : d.alt,
+      decoding: "async"
+    };
+    if (opts.priority) attrs.fetchpriority = "high";
+    else attrs.loading = "lazy";
+    var img = h("img", attrs);
+    if (opts.decorative) img.setAttribute("role", "presentation");
+    img.addEventListener("error", function () {
+      img.remove();
+      if (opts.onMissing) opts.onMissing();
+    });
+    return img;
+  }
+  function figure(d, cls, opts) {
+    opts = opts || {};
+    var fig = h("figure", { class: "media " + cls });
+    var onMissing = function () { fig.classList.add("is-missing"); };
+    fig.appendChild(pic(d, { priority: opts.priority, decorative: opts.decorative, sizes: opts.sizes, onMissing: onMissing }));
+    if (opts.caption) fig.appendChild(h("figcaption", { text: opts.caption }));
+    return fig;
+  }
+
   /* Static decorative icons (no user text inside) */
   var ICONS = {
     port:
@@ -106,6 +138,29 @@
   };
   window.PSCS_SET_HERO_TEXT(window.PSCS_STATE.text.headline, window.PSCS_STATE.text.subheadline);
 
+  // Photographic hero. The illustrated SVG scene stays in the page as a fallback.
+  (function () {
+    var stage = $("hero-stage"), holder = $("hero-photo");
+    var svg = $("hero-scene"), canvas = $("hero-water");
+    if (!C.hero.image || !holder) return;
+    function toPhoto() {
+      stage.classList.add("is-photo");
+      holder.hidden = false;
+      svg.setAttribute("hidden", "");
+      canvas.hidden = true;
+    }
+    function toScene() {
+      stage.classList.remove("is-photo");
+      holder.hidden = true;
+      svg.removeAttribute("hidden");
+      canvas.hidden = false;
+      document.dispatchEvent(new CustomEvent("pscs:hero-mode"));
+    }
+    var img = pic(C.hero.image, { priority: true, onMissing: toScene });
+    holder.appendChild(img);
+    toPhoto();
+  })();
+
   /* ---------- expertise ---------- */
   var E = C.expertise;
   $("exp-eyebrow").textContent = E.eyebrow;
@@ -136,8 +191,9 @@
     d.processes.forEach(function (p) {
       ul.appendChild(h("li", null, [h("span", { text: p })]));
     });
+    var body = h("div", { class: "domain-panel-body" }, [d.image ? figure(d.image, "domain-media") : null, ul]);
     var panel = h("div", { class: "domain-panel", id: panelId, role: "region", "aria-labelledby": btnId }, [
-      h("div", { class: "domain-panel-inner" }, [ul])
+      h("div", { class: "domain-panel-inner" }, [body])
     ]);
     panel.inert = true;
 
@@ -157,12 +213,46 @@
   $("app-eyebrow").textContent = A.eyebrow;
   $("app-title").textContent = A.title;
   $("app-intro").textContent = A.intro;
+  $("app-problems-label").textContent = A.problemsLabel;
+  $("app-options-label").textContent = A.optionsLabel;
+  $("app-steps-label").textContent = A.stepsLabel;
+  $("app-note").textContent = A.note;
+
+  var problems = $("problems");
+  A.problems.forEach(function (p) {
+    var card = h("article", { class: "problem problem-" + p.key }, [
+      p.image ? figure(p.image, "problem-media") : null,
+      h("div", { class: "problem-copy" }, [
+        h("p", { class: "tag", text: p.tag }),
+        h("h4", { class: "card-title", text: p.title }),
+        h("p", { class: "card-text", text: p.text })
+      ])
+    ]);
+    problems.appendChild(card);
+  });
+
+  var options = $("options");
+  A.options.forEach(function (o) {
+    var frame = o.image ? figure(o.image, "option-media") : null;
+    if (frame) frame.setAttribute("data-label", o.tag);
+    var card = h("article", { class: "option option-" + o.key }, [
+      frame,
+      h("div", { class: "option-copy" }, [
+        h("p", { class: "tag", text: o.tag }),
+        h("h4", { class: "card-title", text: o.title }),
+        h("p", { class: "card-text", text: o.text }),
+        o.cta ? h("a", { class: "text-link", href: o.cta.href, text: o.cta.label }) : null
+      ])
+    ]);
+    options.appendChild(card);
+  });
+
   var steps = $("steps");
   A.steps.forEach(function (s, i) {
     steps.appendChild(
       h("li", { class: "step step-" + (i + 1) }, [
         h("span", { class: "step-node", "aria-hidden": "true", text: String(i + 1) }),
-        h("h3", { class: "step-title", text: s.title }),
+        h("h4", { class: "step-title", text: s.title }),
         h("p", { class: "step-text", text: s.text })
       ])
     );
@@ -173,6 +263,14 @@
   $("team-eyebrow").textContent = T.eyebrow;
   $("team-title").textContent = T.title;
   $("team-intro").textContent = T.intro;
+  var tf = $("team-figure"), ph = T.photos;
+  if (tf && ph) {
+    tf.appendChild(h("div", { class: "team-photos" }, [
+      ph.maritime ? figure(ph.maritime.image, "team-shot team-shot-maritime", { caption: ph.maritime.caption }) : null,
+      ph.software ? figure(ph.software.image, "team-shot team-shot-software", { caption: ph.software.caption }) : null,
+      ph.accent ? figure(ph.accent.image, "team-shot team-shot-accent", { decorative: true }) : null
+    ]));
+  }
   var comp = $("competences");
   T.competences.forEach(function (c, i) {
     comp.appendChild(

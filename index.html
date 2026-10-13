@@ -43,9 +43,10 @@
         </div>
       </div>
 
-      <div class="hero-stage" id="hero-stage" aria-hidden="true">
-        <svg class="hero-scene" id="hero-scene" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" focusable="false"></svg>
-        <canvas class="hero-water" id="hero-water"></canvas>
+      <div class="hero-stage" id="hero-stage">
+        <div class="hero-photo" id="hero-photo" hidden></div>
+        <svg class="hero-scene" id="hero-scene" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" focusable="false"></svg>
+        <canvas class="hero-water" id="hero-water" aria-hidden="true"></canvas>
       </div>
     </section>
 
@@ -72,7 +73,13 @@
           </div>
           <p class="section-intro" id="app-intro"></p>
         </div>
+        <h3 class="approach-label" id="app-problems-label"></h3>
+        <div class="problems" id="problems"></div>
+        <h3 class="approach-label" id="app-options-label"></h3>
+        <div class="options" id="options"></div>
+        <h3 class="approach-label" id="app-steps-label"></h3>
         <ol class="steps" id="steps"></ol>
+        <p class="approach-note" id="app-note"></p>
       </div>
     </section>
 
@@ -85,14 +92,7 @@
           <p class="section-intro" id="team-intro"></p>
           <ul class="competences" id="competences"></ul>
         </div>
-        <div class="team-figure" aria-hidden="true">
-          <svg viewBox="0 0 400 380" focusable="false">
-            <circle class="ring ring-1" cx="200" cy="140" r="104"/>
-            <circle class="ring ring-2" cx="138" cy="246" r="104"/>
-            <circle class="ring ring-3" cx="262" cy="246" r="104"/>
-            <circle class="core" cx="200" cy="211" r="9"/>
-          </svg>
-        </div>
+        <div class="team-figure" id="team-figure"></div>
       </div>
     </section>
 
@@ -151,6 +151,7 @@
           <output id="cz-intensity-out" for="cz-intensity"></output>
           <input type="range" id="cz-intensity" min="0" max="100" step="1">
         </div>
+        <p class="cz-hint" id="cz-water-note" hidden>Off while the hero shows a photograph. Your water settings are kept and apply again if the illustrated scene is used.</p>
       </fieldset>
 
       <fieldset>

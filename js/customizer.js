@@ -64,6 +64,17 @@
     f.hideToggle.checked = state.ui.hideToggle;
   }
 
+  /* The water effect belongs to the illustrated scene: with a photographic hero
+     the controls are disabled (values stay saved, nothing is erased). */
+  function syncWaterAvailability() {
+    var on = !window.PSCS_WATER || window.PSCS_WATER.available !== false;
+    f.enabled.disabled = !on;
+    f.intensity.disabled = !on;
+    var note = document.getElementById("cz-water-note");
+    if (note) note.hidden = on;
+  }
+  document.addEventListener("pscs:hero-mode", syncWaterAvailability);
+
   /* ---------- inputs ---------- */
   ["background", "surface", "turquoise", "yellow"].forEach(function (k) {
     f[k].addEventListener("input", function () {
@@ -213,6 +224,7 @@
   window.addEventListener("hashchange", checkHash);
 
   fillForm();
+  syncWaterAvailability();
   apply({ palette: false });
   checkHash();
 })();

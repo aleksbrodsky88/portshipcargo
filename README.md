@@ -21,8 +21,9 @@ node serve.js
 | Исходная палитра (4 базовых цвета), сила воды по умолчанию | `js/settings.js` → `DEFAULTS` |
 | Производные оттенки (светлее/темнее, голубой, цвет текста) | `js/settings.js` → `derivePalette()` |
 | Вёрстка, шрифты, отступы, CSS-переменные | `css/styles.css` |
-| Композиция порт + судно + груз (SVG) | `js/scene.js` |
-| Вода (отражение и рябь, Canvas) | `js/water.js` |
+| Композиция порт + судно + груз (SVG, запасной вариант, если фото hero нет) | `js/scene.js` |
+| Фотографии: пути/размеры/alt (`IMG(...)`), оригиналы в `assets/originals/`, оптимизированные в `assets/img/<имя>-<ширина>.webp` | `js/content.js` |
+| Вода (отражение и рябь, Canvas; выключена, пока hero — фотография) | `js/water.js` |
 | Панель Customize preview | `js/customizer.js` + блок `<!-- CUSTOMIZER -->` в `index.html` |
 
 Для клиентской версии панель удаляется: блок `<!-- CUSTOMIZER -->` в `index.html` и строка `js/customizer.js`.

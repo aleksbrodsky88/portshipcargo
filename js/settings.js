@@ -162,11 +162,20 @@
   }
 
   /* ---------- local storage (wrapped: private mode etc. must not break the page) ---------- */
+  /* Saved text that is still an earlier default (never edited by the owner)
+     moves to the current default; anything the owner wrote is kept. */
+  function upgradeLegacyText(s) {
+    var legacyH = C.hero.legacyHeadlines || [];
+    var legacyS = C.hero.legacySubheadlines || [];
+    if (legacyH.indexOf(s.text.headline) !== -1) s.text.headline = DEFAULTS.text.headline;
+    if (legacyS.indexOf(s.text.subheadline) !== -1) s.text.subheadline = DEFAULTS.text.subheadline;
+    return s;
+  }
   function load() {
     try {
       var raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return clone(DEFAULTS);
-      return sanitize(JSON.parse(raw)).settings;
+      return upgradeLegacyText(sanitize(JSON.parse(raw)).settings);
     } catch (e) {
       return clone(DEFAULTS);
     }
